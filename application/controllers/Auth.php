@@ -125,6 +125,7 @@ class Auth extends CI_Controller
 
 	private function _sendEmail($token, $type)
 	{
+		// masih settingan dengan mailtrap.
 		$config = [
 			'protocol'  => 'smtp',
 			'smtp_host' => 'smtp.mailtrap.io',
