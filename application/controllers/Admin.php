@@ -8,6 +8,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('Admin_model', 'admin');
     }
     public function index()
     {
@@ -73,5 +74,30 @@ class Admin extends CI_Controller
         }
 
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Access Changed</div>');
+    }
+
+    public function users()
+    {
+        $data['title'] = 'Users';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        // $data['users'] = $this->admin->getusers();
+        $jumlah_data = $this->admin->count();
+        // pagination
+        $config['base_url'] = base_url() . 'admin/users';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 5;
+
+        $from = $this->uri->segment(3);
+        $this->pagination->initialize($config);
+
+        $data['users'] = $this->admin->data($config['per_page'], $from);
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/users', $data);
+        $this->load->view('templates/footer');
     }
 }
