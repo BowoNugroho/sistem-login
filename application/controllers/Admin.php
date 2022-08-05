@@ -100,4 +100,32 @@ class Admin extends CI_Controller
         $this->load->view('admin/users', $data);
         $this->load->view('templates/footer');
     }
+
+    public function searchUser()
+    {
+        $data['title'] = 'Users';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+
+        // $data['users'] = $this->admin->getusers();
+        $jumlah_data = $this->admin->count();
+        // pagination
+        $config['base_url'] = base_url() . 'admin/users';
+        $config['total_rows'] = $jumlah_data;
+        $config['per_page'] = 5;
+        $from = $this->uri->segment(3);
+        $this->pagination->initialize($config);
+        $data['users'] = $this->admin->data($config['per_page'], $from);
+
+        // searching  data user
+        $keyword = $this->input->post('keyword');
+        $data['users'] = $this->admin->get_data_user($keyword);
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/user-search', $data);
+        $this->load->view('templates/footer');
+    }
 }

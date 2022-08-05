@@ -36,10 +36,10 @@
                     foreach ($users as $u) : ?>
                         <tr>
                             <th scope="row"> <?= $no++; ?></th>
-                            <td><?= $u['name'] ?></td>
-                            <td><?= $u['email'] ?></td>
-                            <td><?= $u['role_id'] ?></td>
-                            <td><?= $u['is_active'] ?></td>
+                            <td><?= $u->name ?></td>
+                            <td><?= $u->email ?></td>
+                            <td><?= $u->role_id ?></td>
+                            <td><?= $u->is_active ?></td>
                             <td>
                                 <a href="" class="badge badge-success">edit</a>
                                 <a href="" class="badge badge-danger">delete</a>
@@ -54,7 +54,6 @@
     </div>
 </div>
 <!-- /.container-fluid -->
-
 </div>
 <!-- End of Main Content -->
 

@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin_model extends CI_Model
 {
-    public function getUsers($number, $offset)
+    public function get_users($number, $offset)
     {
         $query = "SELECT * 
                     FROM `user` JOIN `role`
@@ -20,5 +20,14 @@ class Admin_model extends CI_Model
     public function count()
     {
         return $this->db->get('user')->num_rows();
+    }
+    // searching data user
+    public function get_data_user($keyword)
+    {
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->like('name', $keyword);
+        $this->db->or_like('email', $keyword);
+        return $this->db->get()->result();
     }
 }
