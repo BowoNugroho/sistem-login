@@ -19,7 +19,7 @@
             <input type="text" name="keyword" placeholder="search">
             <input type="submit" name="search_submit" value="Cari">
             <?= form_close() ?>
-            <a href="<?= base_url('index.php/admin/laporanpdf'); ?>" type="button" class="btn btn-info">Lihat pdf</a>
+            <a href="<?= base_url('index.php/admin/laporanpdf'); ?>" type="button" class="btn btn-info">Lihat fpdf</a>
 
             <table class="table table-hover">
                 <thead>
