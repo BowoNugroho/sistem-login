@@ -128,4 +128,29 @@ class Admin extends CI_Controller
         $this->load->view('admin/user-search', $data);
         $this->load->view('templates/footer');
     }
+    public function laporanPdf()
+    {
+        error_reporting(0); // AGAR ERROR MASALAH VERSI PHP TIDAK MUNCUL
+        $pdf = new FPDF('L', 'mm', 'Letter');
+        $pdf->AddPage();
+        $pdf->SetFont('Arial', 'B', 16);
+        $pdf->Cell(0, 7, 'DAFTAR USER', 0, 1, 'C');
+        $pdf->Cell(10, 7, '', 0, 1);
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(10, 6, 'No', 1, 0, 'C');
+        $pdf->Cell(90, 6, 'Nama ', 1, 0, 'C');
+        $pdf->Cell(120, 6, 'Email', 1, 0, 'C');
+        $pdf->Cell(40, 6, 'Role', 1, 1, 'C');
+        $pdf->SetFont('Arial', '', 10);
+        $users = $this->db->get('user')->result();
+        $no = 0;
+        foreach ($users as $user) {
+            $no++;
+            $pdf->Cell(10, 6, $no, 1, 0, 'C');
+            $pdf->Cell(90, 6, $user->name, 1, 0);
+            $pdf->Cell(120, 6, $user->email, 1, 0);
+            $pdf->Cell(40, 6, $user->role_id, 1, 1);
+        }
+        $pdf->Output();
+    }
 }
