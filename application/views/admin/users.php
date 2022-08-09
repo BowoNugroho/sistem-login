@@ -14,12 +14,19 @@
             <?= $this->session->flashdata('message'); ?>
 
             <!-- <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#newSubmenuModal">Add New Submenu</a> -->
-
-            <?= form_open('admin/searchuser') ?>
-            <input type="text" name="keyword" placeholder="search">
-            <input type="submit" name="search_submit" value="Cari">
-            <?= form_close() ?>
-            <a href="<?= base_url('index.php/admin/laporanpdf'); ?>" type="button" class="btn btn-info">Lihat fpdf</a>
+            <div class="row">
+                <div class="col-sm 4">
+                    <?= form_open('admin/searchuser') ?>
+                    <input type="text" name="keyword" placeholder="search">
+                    <input type="submit" name="search_submit" value="Cari">
+                    <?= form_close() ?>
+                </div>
+                <div class="mb-2 btn-group" role="group" aria-label="Basic example">
+                    <a href="<?= base_url('index.php/admin/laporanfpdf'); ?>" type="button" class="btn btn-info">open Fpdf</a>
+                    <a href="<?= base_url('index.php/admin/laporanmpdf'); ?>" type="button" class="btn btn-info">Unduh Mpdf</a>
+                    <a href="<?= base_url('index.php/admin/exportexcel'); ?>" type="button" class="btn btn-info">Export Excel</a>
+                </div>
+            </div>
 
             <table class="table table-hover">
                 <thead>

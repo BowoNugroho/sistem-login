@@ -3,13 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin_model extends CI_Model
 {
-    public function get_users($number, $offset)
+    public function get_users()
     {
         $query = "SELECT * 
                     FROM `user` JOIN `role`
                     ON `user`.`role_id` = `role`.`id`";
 
-        return $this->db->query($query, $number, $offset)->result_array();
+        return $this->db->query($query)->result_array();
     }
     // pagination
     public function data($number, $offset)
