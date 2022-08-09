@@ -91,7 +91,7 @@ class Admin extends CI_Controller
         // $data['users'] = $this->admin->getusers();
         $jumlah_data = $this->admin->count();
         // pagination
-        $config['base_url'] = base_url() . 'admin/users';
+        $config['base_url'] = base_url() . 'index.php/admin/users';
         $config['total_rows'] = $jumlah_data;
         $config['per_page'] = 5;
 
